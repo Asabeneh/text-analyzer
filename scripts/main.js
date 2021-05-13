@@ -74,7 +74,7 @@ const generateSummary = (txt) => {
     const lexicalDensity = (freqTable.length * 100 ) / words.length
     return (`<h3>Text Analysis Summary</h3>
     <p>Total number of words: <em>${words.length}</em></p>
-    <p>Number of character: <em>${characters.length}</em></p>
+    <p>Number of characters: <em>${characters.length}</em></p>
     <p>The most frequent word: <em>${freqTable[0].word}</em></p>
     <p>The word variety(lexical density): <em>${lexicalDensity.toFixed(2)}%</em></p>
     `)

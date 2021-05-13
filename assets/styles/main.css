@@ -12,7 +12,7 @@
 }
 
 /* CSS html  */
-html {
+html{
     overflow-x: hidden;
     position: relative;
     min-height: 100%;
@@ -27,8 +27,7 @@ body {
     font-family: 'Lato', sans-serif;
     line-height: 160%;
     margin:0 0 150px 0;
-
-
+    font-family: Raleway;
 }
 
 /* CSS for the header part */
@@ -123,15 +122,18 @@ display: block;
 padding:20px;
 width: 100%;
 border-radius: 5px;
+line-height: 170%;
 border:none;
 outline: none;;
 }
 
 textarea:hover {
-  border: 1px solid var(--header-bg-color);
+  /* border: 1px solid var(--header-bg-color); */
+  border: 0;
+  box-shadow: inset 0 0 5px var(--header-bg-color)
 }
 .btn{
-  padding:10px 25px;
+  padding:10px 50px;
   margin: 20px 0;
   background:var(--header-bg-color);
   color:white;
@@ -141,4 +143,38 @@ textarea:hover {
   font-weight: 900;
   text-transform: uppercase;
   
+}
+#summary {
+    background-color: var(--header-bg-color);
+    padding:25px;
+    color:white;
+    font-weight: 400;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius:25px;
+    margin-bottom: 10px;
+}
+em {
+    color:rgb(16, 230, 16);
+    font-weight: 900;
+}
+@media (max-width:768px){
+    body {
+        margin:0;
+    }
+    #title {
+        font-size: 1.75rem;
+    }
+    .main-wrapper {
+        width: 100%;
+        padding:0;
+    }
+    main {
+        padding: 5px 5px 30px 5px;
+        margin-bottom: 50px;
+    }
+    .btn{
+        width: 100%;
+        
+      }
 }

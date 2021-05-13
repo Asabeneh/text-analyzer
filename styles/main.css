@@ -1,0 +1,144 @@
+  /* Universal select */
+  * {
+    margin: 0;
+    box-sizing: border-box;
+}
+/* === css variables === */
+:root {
+    --header-bg-color: rgb(122, 61, 236);
+    --textarea-bg-color: rgb(250, 246, 246);
+    --body-bg-color: rgb(210, 214, 210);
+    --nav-link-color: #bbb;
+}
+
+/* CSS html  */
+html {
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    background: var(--body-bg-color);
+    margin: auto;
+    line-height: 1.75;
+    font-weight: 900;
+    word-spacing: 1.5px;
+    font-family: 'Lato', sans-serif;
+    line-height: 160%;
+    margin:0 0 150px 0;
+
+
+}
+
+/* CSS for the header part */
+header,footer {
+  background: var(--header-bg-color);
+  padding: 20px;
+  text-align: center;
+  color:white;
+
+}
+
+main {
+
+    padding: 30px 50px 30px 50px;
+}
+.main-wrapper{
+    width: 65%;
+    margin:auto;
+}
+
+h1 {
+    margin:10px auto;
+    text-transform: uppercase;
+}
+
+
+/* Table CSS */
+table,
+td,
+th {
+    /* border: 1px solid var(--header-bg-color); */
+    border-collapse: collapse;
+    font-weight: 300;
+}
+
+table {
+    width: 50%;
+    margin: 50 auto;
+}
+
+thead {
+    background-color: rgb(135, 80, 236);
+    color: white;
+    font-weight: 900;
+}
+
+td {
+    padding-left: 10px;
+}
+table {
+    width: 100%;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+}
+
+tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+
+}
+tbody tr,
+tbody td {
+    padding: .625em;
+    text-align: center;
+}
+thead tr th {
+    background: var(--header-bg-color);
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 15px;
+    color: white;
+    font-weight: 900;
+}
+
+/* Footer css */
+footer {
+  position: absolute;
+  bottom: 0;;
+  width: 100%;;
+
+}
+.footer-wrapper > div a {
+  margin:25px;
+}
+
+
+textarea {
+display: block;
+padding:20px;
+width: 100%;
+border-radius: 5px;
+border:none;
+outline: none;;
+}
+
+textarea:hover {
+  border: 1px solid var(--header-bg-color);
+}
+.btn{
+  padding:10px 25px;
+  margin: 20px 0;
+  background:var(--header-bg-color);
+  color:white;
+  border: 2px solid var(--header-bg-color);
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 900;
+  text-transform: uppercase;
+  
+}

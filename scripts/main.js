@@ -80,17 +80,22 @@ const generateSummary = (txt) => {
     `)
 }
 
-
 summary.innerHTML = generateSummary(paragraph)
 createTable(paragraph)
     
 generateBtn.addEventListener('click', (e) => {
 
    if(content.value.length > 0){
-summary.innerHTML = generateSummary(content.value)
+   summary.innerHTML = generateSummary(content.value)
    createTable(content.value)
 
    } else {
+    summary.innerHTML = (`<h3>Text Analysis Summary</h3>
+    <p>Total number of words: <em>0</em></p>
+    <p>Number of characters: <em>0</em></p>
+    <p>The most frequent word: <em>None</em></p>
+    <p>The word variety(lexical density): <em>0%</em></p>
+    `)
     result.innerHTML = '<p style="color:red;">Please, copy and past text on the textarea.</p>'
    }
 })

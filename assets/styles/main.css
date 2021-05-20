@@ -10,7 +10,10 @@
     --body-bg-color: rgb(210, 214, 210);
     --nav-link-color: #bbb;
 }
-
+a{
+    text-decoration: none;
+    color: white;
+}
 /* CSS html  */
 html{
     overflow-x: hidden;
@@ -151,6 +154,7 @@ textarea:hover {
     font-weight: 400;
     border-top-left-radius: 25px;
     border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
     border-bottom-right-radius:25px;
     margin-bottom: 10px;
 }

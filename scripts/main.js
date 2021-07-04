@@ -1,20 +1,46 @@
+/*
+GLOBAL VARIABLES
+*/
+
+const content = document.querySelector('#content')
+const result = document.querySelector('#result')
+const generateBtn = document.querySelector('#generate')
+const table = document.createElement('table')
+const tbody = document.createElement('tbody')
+const thead = document.createElement('thead')
+const summary = document.getElementById('summary')
+
+/*
+*** SAMPLE TEXT ***
+*/
+
 const paragraph = `I love teaching, inspiring, and motivating people. I love to teach JavaScript, Python and React. If you do not love teaching what else can you love. I love Python but I think most of the time in JavaScript. Do you think in Python or JavaScript? If you do not love something that can give you all the capabilities to develop an application what else can you love.`
 
 
-const changeToCleanWords = (txt) => {
+/*
+*** word_tokenize function clean the text and changes to array of words ***
+*/
+
+const word_tokenize = (txt) => {
     const words = txt.replace(/[^\w\d\s]/g, '').toLowerCase().split(' ')
     return words
 }
+
+/*
+*** The changeToCharacters function cleans the text and return alpha characters***
+*/
 const changeToCharacters = (txt) => {
     const characters = txt.replace(/[^\w\d]/g, '').toLowerCase()
     return characters
 }
 
-const findMostFreqWords = (txt = paragraph) => {
+/*
+*** The createFreqTable returns a sorted array of objects with the most frequent first. ***
+*/
+const createFreqTable = (txt = paragraph) => {
     const freqTable = {}
     const arr =[]
-    const words = changeToCleanWords(txt)
-
+    const words = word_tokenize(txt)
     for(const word of words){
         if(freqTable[word]){
             freqTable[word] += 1
@@ -32,17 +58,11 @@ const findMostFreqWords = (txt = paragraph) => {
     return 0;
     })
     return sortedArr
-
 }
-const content = document.querySelector('#content')
-const result = document.querySelector('#result')
-const generateBtn = document.querySelector('#generate')
-const table = document.createElement('table')
-const tbody = document.createElement('tbody')
-const thead = document.createElement('thead')
-const summary = document.getElementById('summary')
 
-
+/*
+*** Create Table Rows ***
+*/
 const createTableRows = (arr) => {
     let rows = ''
     for(const {word, count} of arr){
@@ -61,17 +81,19 @@ const createTable = (txt) => {
     <th>Word Count</th>
     </tr>`
     thead.innerHTML = head
-    tbody.innerHTML = createTableRows(findMostFreqWords(txt))
+    tbody.innerHTML = createTableRows(createFreqTable(txt))
     table.appendChild(thead)
     table.appendChild(tbody)
     result.appendChild(table)
     content.textContent = txt
 }
+
 const generateSummary = (txt) => {
-    const freqTable = findMostFreqWords(txt)
-    const words = changeToCleanWords(txt)
+    const freqTable = createFreqTable(txt)
+    const words = word_tokenize(txt)
     const characters = changeToCharacters(txt)
-    const lexicalDensity = (freqTable.length * 100 ) / words.length
+    const lexicalDensity = txt.length > 0 ? (freqTable.length * 100 ) / words.length : 0
+
     return (`<h3>Text Analysis Summary</h3>
     <p>Total number of words: <em>${words.length}</em></p>
     <p>Number of characters: <em>${characters.length}</em></p>
@@ -80,12 +102,10 @@ const generateSummary = (txt) => {
     `)
 }
 
-
 summary.innerHTML = generateSummary(paragraph)
 createTable(paragraph)
     
 generateBtn.addEventListener('click', (e) => {
-
    if(content.value.length > 0){
 summary.innerHTML = generateSummary(content.value)
    createTable(content.value)
@@ -95,3 +115,7 @@ summary.innerHTML = generateSummary(content.value)
    }
 })
 
+content.addEventListener('change', (e) => {
+    summary.innerHTML = generateSummary(e.target.value)
+    createTable(e.target.value)
+})

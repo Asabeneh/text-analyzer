@@ -148,7 +148,7 @@ content.addEventListener('change', (e) => {
 
 select.addEventListener('change', async (e) => {
     let value = e.currentTarget.value
-    let fileName = `../data/${value}.txt`
+    let fileName = `https://asabeneh.github.io/text-analyzer/data/${value}.txt`
     let response = await fetch(fileName)
     let text = await response.text()
     let lines = text.split('\n').map((line) => line.trim())

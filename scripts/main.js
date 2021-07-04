@@ -1,7 +1,6 @@
 /*
 GLOBAL VARIABLES
 */
-
 const content = document.querySelector('#content')
 const result = document.querySelector('#result')
 const generateBtn = document.querySelector('#generate')
@@ -9,18 +8,14 @@ const table = document.createElement('table')
 const tbody = document.createElement('tbody')
 const thead = document.createElement('thead')
 const summary = document.getElementById('summary')
-
 /*
 *** SAMPLE TEXT ***
 */
-
 const paragraph = `I love teaching, inspiring, and motivating people. I love to teach JavaScript, Python and React. If you do not love teaching what else can you love. I love Python but I think most of the time in JavaScript. Do you think in Python or JavaScript? If you do not love something that can give you all the capabilities to develop an application what else can you love.`
-
 
 /*
 *** word_tokenize function clean the text and changes to array of words ***
 */
-
 const word_tokenize = (txt) => {
     const words = txt.replace(/[^\w\d\s]/g, '').toLowerCase().split(' ')
     return words
@@ -74,6 +69,9 @@ const createTableRows = (arr) => {
     return rows
 }
 
+/*
+*** Create Table  ***
+*/
 const createTable = (txt) => {
     result.innerHTML = ''
     let head = `<tr>
@@ -88,6 +86,9 @@ const createTable = (txt) => {
     content.textContent = txt
 }
 
+/*
+*** Generate summary  ***
+*/
 const generateSummary = (txt) => {
     const freqTable = createFreqTable(txt)
     const words = word_tokenize(txt)
@@ -102,9 +103,13 @@ const generateSummary = (txt) => {
     `)
 }
 
+/*
+*** Inserting the generated summary  ***
+*/
 summary.innerHTML = generateSummary(paragraph)
-createTable(paragraph)
-    
+createTable(paragraph) // creating the table on the DOM
+   
+// Handling onclick event to generate summary and table
 generateBtn.addEventListener('click', (e) => {
    if(content.value.length > 0){
 summary.innerHTML = generateSummary(content.value)
@@ -115,6 +120,7 @@ summary.innerHTML = generateSummary(content.value)
    }
 })
 
+// Handling onchange event to generate summary and table
 content.addEventListener('change', (e) => {
     summary.innerHTML = generateSummary(e.target.value)
     createTable(e.target.value)

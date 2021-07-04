@@ -8,6 +8,14 @@ const table = document.createElement('table')
 const tbody = document.createElement('tbody')
 const thead = document.createElement('thead')
 const summary = document.getElementById('summary')
+const select = document.querySelector('select')
+const checkbox = document.querySelector('#stopwords')
+let removingStopWords = null
+
+checkbox.addEventListener('click',(e) => {
+    removingStopWords = e.target.checked 
+})
+
 /*
 *** SAMPLE TEXT ***
 */
@@ -16,9 +24,19 @@ const paragraph = `I love teaching, inspiring, and motivating people. I love to 
 /*
 *** word_tokenize function clean the text and changes to array of words ***
 */
-const word_tokenize = (txt) => {
-    const words = txt.replace(/[^\w\d\s]/g, '').toLowerCase().split(' ')
+const tokenizeWord = (txt) => {
+    const words = txt.replace(/[^\w\d\s_-]/g, ' ').toLowerCase().split(' ').filter((word) => word.length >= 1 && word!=='-')
     return words
+}
+
+/*
+***
+Removing less important words
+***
+*/
+const tokenizeWordWithoutStopWords = (text) => {
+    console.log(stopWords)
+    return tokenizeWord(text).filter((word) => stopWords.indexOf(word) == -1)
 }
 
 /*
@@ -35,7 +53,8 @@ const changeToCharacters = (txt) => {
 const createFreqTable = (txt = paragraph) => {
     const freqTable = {}
     const arr =[]
-    const words = word_tokenize(txt)
+    console.log(removingStopWords)
+    const words = removingStopWords ? tokenizeWordWithoutStopWords(txt):  tokenizeWord(txt)
     for(const word of words){
         if(freqTable[word]){
             freqTable[word] += 1
@@ -86,19 +105,20 @@ const createTable = (txt) => {
     content.textContent = txt
 }
 
+
 /*
 *** Generate summary  ***
 */
 const generateSummary = (txt) => {
     const freqTable = createFreqTable(txt)
-    const words = word_tokenize(txt)
+    const words = removingStopWords ? tokenizeWordWithoutStopWords(txt):  tokenizeWord(txt)
     const characters = changeToCharacters(txt)
     const lexicalDensity = txt.length > 0 ? (freqTable.length * 100 ) / words.length : 0
 
     return (`<h3>Text Analysis Summary</h3>
-    <p>Total number of words: <em>${words.length}</em></p>
-    <p>Number of characters: <em>${characters.length}</em></p>
-    <p>The most frequent word: <em>${freqTable[0].word}</em></p>
+    <p>Total number of words: <em>${words.length.toLocaleString()}</em></p>
+    <p>Number of characters: <em>${characters.length.toLocaleString()}</em></p>
+    <p>The most frequent word: <em>${Object.keys(freqTable).length > 0 ? freqTable[0].word: 0}</em></p>
     <p>The word variety(lexical density): <em>${lexicalDensity.toFixed(2)}%</em></p>
     `)
 }
@@ -114,9 +134,9 @@ generateBtn.addEventListener('click', (e) => {
    if(content.value.length > 0){
 summary.innerHTML = generateSummary(content.value)
    createTable(content.value)
-
    } else {
     result.innerHTML = '<p style="color:red;">Please, copy and past text on the textarea.</p>'
+    summary.innerHTML = generateSummary('')
    }
 })
 
@@ -125,3 +145,33 @@ content.addEventListener('change', (e) => {
     summary.innerHTML = generateSummary(e.target.value)
     createTable(e.target.value)
 })
+
+select.addEventListener('change', async (e) => {
+    let value = e.currentTarget.value
+    let fileName = `../data/${value}.txt`
+    let response = await fetch(fileName)
+    let text = await response.text()
+    let lines = text.split('\n').map((line) => line.trim())
+    if(value) content.textContent = text
+    summary.innerHTML = generateSummary(lines.join())
+    createTable(lines.join())
+})
+
+if(removingStopWords){   
+    checkbox.addEventListener('click', (e) => {
+    summary.innerHTML = generateSummary(paragraph)
+    createTable(paragraph)
+})
+}
+
+
+
+
+
+
+    
+
+
+
+
+

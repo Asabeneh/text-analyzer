@@ -19,13 +19,29 @@
 
     <div id='root'>
         <header>
-            <div>
+            <div class="header-wrapper">
                 <h1 id='title'>Simple Text Analyser</h1>
-                <small style="font-weight:300;">Copy a text and paste on the text area</small>
+                <small style="font-weight:600;">Copy a text and paste on the text area</small>
                 <div>
-                    <a href="https://github.com/Asabeneh/30-Days-Of-Python/blob/master/data/obama_speech.txt">Barack Obama's Speech</a>
-                    <a href="                    https://github.com/Asabeneh/30-Days-Of-Python/blob/master/data/donald_speech.txt">Donald J. Trump's Speech</a>
+                    <select name="" id="">
+                        <option value="">--select text --</option>
+                        <option value="obama">Barack Obama Speech</option>
+                        <option value="trump">Donald Trump Speech</option>
+                        <option value="michelle">Michelle Obama Speech</option>
+                        <option value="melina">Melina Trump Speech</option>
+                         <option value="genesis">Genesis</option>
+                                <option value="bush">Bush</option>
+                    </select>
+                   
+                        <input type="checkbox" id='stopwords'>
+                        <label for="stopwords">Remove Stop Words</label>
+
+                   
+                    
                 </div>
+              
+                
+
             </div>
         </header>
         <main>
@@ -49,8 +65,8 @@
         </footer>
     </div>
 
-   
-    
+   <script src="https://cdn.jsdelivr.net/npm/natural@5.0.3/lib/natural/index.min.js"></script>
+    <script src='./scripts/stop-words.js'></script>
     <script src='./scripts/main.js'></script>
 </body>
 </html>

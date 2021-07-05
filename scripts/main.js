@@ -142,8 +142,8 @@ summary.innerHTML = generateSummary(content.value)
 
 // Handling onchange event to generate summary and table
 content.addEventListener('change', (e) => {
-    summary.innerHTML = generateSummary(e.target.value)
-    createTable(e.target.value)
+    summary.innerHTML = generateSummary(content.value)
+    createTable(content.value)
 })
 
 select.addEventListener('change', async (e) => {
@@ -152,7 +152,7 @@ select.addEventListener('change', async (e) => {
     let response = await fetch(fileName)
     let text = await response.text()
     let lines = text.split('\n').map((line) => line.trim())
-    if(value) content.textContent = text
+    content.textContent = text
     summary.innerHTML = generateSummary(lines.join())
     createTable(lines.join())
 })

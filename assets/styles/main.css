@@ -8,6 +8,7 @@
     --header-bg-color: rgb(122, 61, 236);
     --textarea-bg-color: rgb(250, 246, 246);
     --body-bg-color: rgb(210, 214, 210);
+        --body-bg-color: rgb(246, 239, 250);
     --nav-link-color: #bbb;
 }
 
@@ -86,13 +87,13 @@ td {
 table {
     width: 100%;
     text-align: center;
-    border: 1px solid #ccc;
+    border: 1px solid var(--body-bg-color);
     border-collapse: collapse;
 }
 
 tr {
     background-color: #f8f8f8;
-    border: 1px solid #ddd;
+    border: 1px solid var(--body-bg-color);
     padding: .35em;
 
 }
